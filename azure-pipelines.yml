@@ -14,12 +14,10 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreCLI@2
+- task: UseDotNet@2
   inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'select'
-    vstsFeed: '88e02e9a-296c-4385-aa60-76a25e13dd4a'
+    packageType: 'sdk'
+    version: '.NET Core 3.1'
 
 - task: DotNetCoreCLI@2
   inputs:
