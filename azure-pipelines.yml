@@ -3,7 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-name: SimplePipeline as builder
+name: SimplePipeline AS builder
 trigger:
 - master
 
@@ -14,10 +14,16 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: UseDotNet@2
+# - task: UseDotNet@2
+#   inputs:
+#     packageType: 'sdk'
+#     version: '3.1.0'
+
+- task: DotNetCoreCLI@2
   inputs:
-    packageType: 'sdk'
-    version: '3.1.0'
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
 
 - task: DotNetCoreCLI@2
   inputs:
